@@ -28,23 +28,22 @@ function main {
 	# globals
 	PATH_CONFIG="${SCRIPT_PARENT}/config.cfg"
 	OPTIONS=(
+		"sync"
 		"backup/restore"
 		"create/remove site"
-		"sync custom theme"
-		"sync images"
 		"show config"
 	)
 
 	# CONFIG
 	declare -A CONFIG
 	readFileToMap CONFIG ${PATH_CONFIG}
-	SRC_GHOST=${CONFIG[SRC_GHOST]}
-	SRC_CONTENT=${CONFIG[SRC_CONTENT]}
-	SRC_THEME=${CONFIG[SRC_THEME]}
-	SRC_IMGS=${CONFIG[SRC_IMGS]}
-	DST_CONTENT=${CONFIG[DST_CONTENT]}
-	DST_THEME=${CONFIG[DST_THEME]}
-	DST_IMGS=${CONFIG[DST_IMGS]}
+	export SRC_GHOST=${CONFIG[SRC_GHOST]}
+	export SRC_CONTENT=${CONFIG[SRC_CONTENT]}
+	export SRC_THEME=${CONFIG[SRC_THEME]}
+	export SRC_IMGS=${CONFIG[SRC_IMGS]}
+	export DST_CONTENT=${CONFIG[DST_CONTENT]}
+	export DST_THEME=${CONFIG[DST_THEME]}
+	export DST_IMGS=${CONFIG[DST_IMGS]}
 
 	while true; do
 		echo "---"
@@ -53,16 +52,8 @@ function main {
 			echo "${opt}"
 			case ${opt} in
 
-				"sync custom theme")
-					echo
-					echo -e "Syncing theme from ${CYAN}${SRC_THEME}${CLEAR} to ${CYAN}${DST_THEME}${CLEAR}"
-					rsync --recursive --perms --times --chown=999:999 --numeric-ids --human-readable --progress --delete --exclude node_modules ${SRC_THEME} ${DST_THEME}
-					;;
-
-				"sync images")
-					echo
-					echo -e "Syncing images from ${CYAN}${SRC_IMGS}${CLEAR} to ${CYAN}${DST_IMGS}${CLEAR}"
-					rsync --recursive --perms --times --chown=999:999 --numeric-ids --human-readable --progress --delete ${SRC_IMGS} ${DST_IMGS}
+				"sync")
+					${SCRIPT_DIR}/run/un.ghost.sync.sh
 					;;
 
 				"backup/restore")
