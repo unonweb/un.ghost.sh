@@ -32,6 +32,7 @@ function main {
 		"backup/restore"
 		"create/remove site"
 		"show config"
+		"edit config"
 	)
 
 	# CONFIG
@@ -69,6 +70,11 @@ function main {
 					for key in ${!CONFIG[@]}; do 
 						echo "${key}=${CONFIG[${key}]}"
 					done
+					;;
+
+				"edit config")
+					echo
+					nano ${PATH_CONFIG} &
 					;;
 			esac
 			break
