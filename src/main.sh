@@ -74,7 +74,8 @@ function main {
 
 				"edit config")
 					echo
-					nano ${PATH_CONFIG} &
+					echo "Calling ${CYAN}nano ${PATH_CONFIG} ${CLEAR}..."
+					nano "${PATH_CONFIG}" &
 					;;
 			esac
 			break

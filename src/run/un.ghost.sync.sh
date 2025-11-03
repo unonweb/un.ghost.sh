@@ -9,7 +9,6 @@ function main {
 		echo "---"
 		echo -e "${MAGENTA}Select:${CLEAR}"
 		select opt in "${OPTIONS[@]}"; do
-			echo "${opt}"
 			case ${opt} in
 
 				"sync custom theme")
