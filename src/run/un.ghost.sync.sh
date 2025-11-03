@@ -3,6 +3,7 @@ function main {
 	local _OPTIONS=(
 		"sync custom theme"
 		"sync images"
+		"swap direction"
 	)
 
 	local _DIRECTION="local-remote"
