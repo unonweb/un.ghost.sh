@@ -17,13 +17,28 @@ function main {
 					echo -e "SRC: ${CYAN}${SRC_THEME}${CLEAR}"
 					echo -e "DST: ${CYAN}${DST_THEME}${CLEAR}"
 					echo -e "CMD: ${CYAN}${CMD}${CLEAR}"
-					${CMD}
+					
+					echo "Hit enter to proceed!"
+					read -n 1 -p ">> "
+					echo
+					if [[ -z ${REPLY} ]]; then
+						${CMD}
+					fi
 					;;
 
 				"sync images")
 					echo
-					echo -e "Syncing images from ${CYAN}${SRC_IMGS}${CLEAR} to ${CYAN}${DST_IMGS}${CLEAR}"
-					rsync --recursive --perms --times --chown=999:999 --numeric-ids --human-readable --progress --delete ${SRC_IMGS} ${DST_IMGS}
+					CMD="rsync --recursive --perms --times --chown=999:999 --numeric-ids --human-readable --progress --delete ${SRC_IMGS} ${DST_IMGS}"
+					echo -e "SRC: ${CYAN}${SRC_IMGS}${CLEAR}"
+					echo -e "DST: ${CYAN}${DST_IMGS}${CLEAR}"
+					echo -e "CMD: ${CYAN}${CMD}${CLEAR}"
+
+					echo "Hit enter to proceed!"
+					read -n 1 -p ">> "
+					echo
+					if [[ -z ${REPLY} ]]; then
+						${CMD}
+					fi
 					;;
 				
 				"-> return ")
